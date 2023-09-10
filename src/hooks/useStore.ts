@@ -1,4 +1,4 @@
-import { Action, type State } from '../types.d'
+import { Action, FromLanguage, Language, type State } from '../types.d'
 import React from 'react'
 
 const initialState: State = {
@@ -59,11 +59,11 @@ export function useStore () {
         dispatch({ type:'INTERCHANGE_LENGUAGES' })
     }
 
-    const setFromLenguage = (payload: string) => {
+    const setFromLenguage = (payload: FromLanguage) => {
         dispatch({ type:'SET_FROM_LENGUAGE', payload })
     }
 
-    const setToLenguage = (payload: string) => {
+    const setToLenguage = (payload: Language) => {
         dispatch({ type:'SET_TO_LENGUAGE', payload })
     }
 
