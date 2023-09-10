@@ -1,20 +1,65 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+import { Container, Row, Col, Button, Stack } from 'react-bootstrap'
 import './App.css'
-import React from 'react'
 import { useStore } from './hooks/useStore'
+import { AUTO_LANGUAGE } from './constants'
+import { ArrowsIcon } from './components/Icons'
+import { LanguageSelector } from './components/LanguageSelector'
+import { SectionType } from './types.d'
+import { TextArea } from './components/TextArea'
 
 function App() {
 
-  const { fromLenguage, setFromLenguage } = useStore()
+  const { fromLenguage, toLenguage, fromText, result,
+    setFromLenguage, setToLenguage, interchangeLenguages, setFromText, setResult 
+  } = useStore()
 
   return (
-    <>
-      <h1>Google Translate</h1>
-      <button onClick={() => {
-        setFromLenguage('es')
-      }}>Change to spanish</button>
-      {fromLenguage}
-    </>
+    <Container fluid={true}>
+      <h2>Google Translate</h2>
+
+      <Row>
+        <Col>
+          <Stack gap={2}>
+
+          <LanguageSelector
+          type={SectionType.From}
+          value={fromLenguage} 
+          onChange={setFromLenguage}
+          />
+          <TextArea
+            placeholder='Introduce text'
+            type={SectionType.From}
+            value={fromText}
+            onChange={setFromText}
+            />
+          </Stack>
+        </Col>
+
+        <Col xs='auto'>
+          <Button variant='link' disabled={fromLenguage === AUTO_LANGUAGE} onClick={interchangeLenguages}>
+            <ArrowsIcon/>
+          </Button>
+        </Col>
+
+        <Col>
+          <Stack gap={2}>
+            <LanguageSelector 
+            type={SectionType.To}
+            value={toLenguage}
+            onChange={setToLenguage}
+            />
+            <TextArea
+              placeholder='Traduccion'
+              type={SectionType.To}
+              value={result}
+              onChange={setResult}
+            />
+          </Stack>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
