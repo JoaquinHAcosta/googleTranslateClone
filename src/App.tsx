@@ -11,8 +11,17 @@ import { TextArea } from './components/TextArea'
 
 function App() {
 
-  const { fromLenguage, toLenguage, fromText, result,
-    setFromLenguage, setToLenguage, interchangeLenguages, setFromText, setResult 
+  const { 
+    fromLenguage, 
+    toLenguage, 
+    fromText, 
+    result, 
+    loading,
+    setFromLenguage, 
+    setToLenguage, 
+    interchangeLenguages, 
+    setFromText, 
+    setResult 
   } = useStore()
 
   return (
@@ -29,7 +38,6 @@ function App() {
           onChange={setFromLenguage}
           />
           <TextArea
-            placeholder='Introduce text'
             type={SectionType.From}
             value={fromText}
             onChange={setFromText}
@@ -51,7 +59,7 @@ function App() {
             onChange={setToLenguage}
             />
             <TextArea
-              placeholder='Traduccion'
+              loading={loading}
               type={SectionType.To}
               value={result}
               onChange={setResult}
